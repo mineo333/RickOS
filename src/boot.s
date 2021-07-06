@@ -48,12 +48,13 @@ global pg_table_start ;every one of these global variables are 4kb aligned
 global pg_table_end
 global pg_dir_start
 global pg_dir_end
-pg_table_start:
-resb 1052672    ;1028 KiB. We only need 1025 KiB to map 1 GiB but I made it 4 KiB aligned.
-pg_table_end:
-resb 4096
 pg_dir_start: resb 8192
 pg_dir_end:
+pg_table_start:
+resb 4210688    ;1028 KiB. We only need 1025 KiB to map 1 GiB but I made it 4 KiB aligned.
+pg_table_end:
+resb 4096
+
 
 
 
@@ -77,18 +78,3 @@ _start:
 .hang:	hlt
 	jmp .hang
 .end:
-
-
-global load_gdt
-load_gdt:
-	mov eax, [esp+4]
-	lgdt [eax] ;load the gdt
-	mov ax, 0x10
-	mov ds, ax        ; Load all data segment selectors
-	mov es, ax
-	mov fs, ax
-	mov gs, ax
-	mov ss, ax
-	jmp 0x08:.flush ;implicitly loads cs
-.flush:
-	ret

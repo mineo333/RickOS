@@ -11,6 +11,7 @@ extern void load_gdt(struct gdt_ptr_struct* gdt_ptr);
 char* heap_brk = &_begin_data;
 extern char str;
 extern void _start(); //the beginning of the text section
+extern uint32_t ret_cr0();
 struct gdt_ptr_struct* setup_gdt(){
 
 
@@ -40,23 +41,17 @@ void kernel_init()
 
 
 	load_gdt(gdt_ptr);
+	paging_init();
+	//print_number((uint32_t)sizeof(struct pte_t));
+
 	if((uint32_t)&pg_table_start % 4096 == 0 && (uint32_t)&pg_table_end % 4096 == 0 && (uint32_t)&pg_dir_start % 4096 == 0 && (uint32_t)&pg_dir_end % 4096 == 0){
 		terminal_writestring(&str);
 	}
+	str = 'k';
+	terminal_writestring(&str);
+	pd_t* pd = &pg_dir_start;
+//	uint32_t num = (uint32_t)*(pd+222);
+	//print_number(num);
+	//print_number((uint32_t)sizeof(struct pte_t));
 
 }
-
-
-
-
-/*char* gdt_base_str1 = (char*)malloc(12);
-char* gdt_base_str2 = (char*)malloc(12);
-itoa((uint32_t)&heap_brk, gdt_base_str1, 10); //forgot the fucking pointer symbol.
-
-terminal_writestringln("Writing address pre-malloc:");
-terminal_writestringln(gdt_base_str1);
-
-itoa((uint32_t)&heap_brk, gdt_base_str2, 10); //forgot the fucking pointer symbol.
-
-terminal_writestringln("Writing address post-malloc (12 bytes):");
-terminal_writestringln(gdt_base_str2);*/

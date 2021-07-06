@@ -1,8 +1,11 @@
 #include <stdio.h>
-
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
 int main(void) {
-  int  var[] = {10, 100, 200};
-  char* ptr = (char*)&var[2];
-  printf("%d", *(ptr));
-  return 0;
+  for(int i = 0; i<0x40000000; i+=0x1000){
+    if(i % 4096 != 0){
+      printf("Wrong");
+    }
+  }
 }

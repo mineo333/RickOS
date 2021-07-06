@@ -115,3 +115,9 @@ void terminal_writestringln(const char* data){
 	terminal_write(data, strlen(data));
 	terminal_writestring("\n");
 }
+void print_number(uint32_t num){
+  char* num_str = (char*)malloc(12);
+	itoa(num, num_str, 10); //forgot the fucking pointer symbol.
+	terminal_writestringln(num_str);
+	free(num_str);
+}
