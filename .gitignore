@@ -1,1 +1,4 @@
-bin
+#Excludes all objects in the bin/ directory.
+bin/*
+#Excludes the main binary, rickos.bin
+rickos.bin
