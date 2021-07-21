@@ -2,7 +2,7 @@
 #include <stddef.h>
 #include <stdint.h>
 #include "idt.h"
-
+#include "monitor.h"
 
 //for the segment selector because we are working in paging we need only choose the generic kernel selector
 void idt_gate(uint32_t base, uint8_t flags, struct idt_entry* idt_entry){
@@ -24,5 +24,12 @@ void setup_idt(){
   idt.limit = (32-1)*8;
 
   load_idt(&idt);
+
+}
+
+void isr_handler(struct registers_t regs){
+	monitor_write("recieved interrupt: ");
+	monitor_write_dec(regs.int_no);
+	monitor_put('\n');
 
 }

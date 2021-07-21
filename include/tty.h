@@ -4,7 +4,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//this is the old tty code
+//this is the old tty code. Take a look at monitor.h for the new code
 
 enum vga_color {
 	VGA_COLOR_BLACK = 0,

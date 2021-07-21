@@ -5,7 +5,7 @@ IDIR=include
 BINDIR = bin
 TARGETDIR = .
 SRCDIR = src
-objects = boot.o helpers.o interrupt.o page.o stdlib.o monitor.o idt.o main.o
+objects = boot.o helpers.o interrupt.o page.o stdlib.o monitor.o idt.o main.o gdt.o
 CFLAGS=-I $(IDIR) -std=gnu99 -ffreestanding -O2 -Wall -Wextra
 ASMFLAGS= -felf32
 
