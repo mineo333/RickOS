@@ -25,8 +25,8 @@ rickos.bin: $(objects)
 .PHONY: clean run gdb all remake
 
 all:
-	mkdir $(BINDIR)
-	rickos.bin
+	mkdir -p $(BINDIR)
+	make rickos.bin
 remake:
 	clean all
 clean: #clean target
