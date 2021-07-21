@@ -1,4 +1,5 @@
-CC=i686-elf-gcc
+#CC=i686-elf-gcc
+CC=gcc -m32
 ASMCC=nasm
 QEMU= qemu-system-i386
 IDIR=include
@@ -6,7 +7,7 @@ BINDIR = bin
 TARGETDIR = .
 SRCDIR = src
 objects = boot.o helpers.o interrupt.o page.o stdlib.o monitor.o idt.o main.o gdt.o
-CFLAGS=-I $(IDIR) -std=gnu99 -ffreestanding -O2 -Wall -Wextra
+CFLAGS=-I $(IDIR) -std=gnu99 -ffreestanding -O2 -Wall -Wextra -fno-pie
 ASMFLAGS= -felf32
 
 
@@ -30,7 +31,7 @@ remake:
 	clean all
 clean: #clean target
 	rm $(TARGETDIR)/rickos.bin $(patsubst %.o, $(BINDIR)/%.o, $(objects))
-run:
+run: all
 	$(QEMU) -kernel $(TARGETDIR)/rickos.bin
-gdb:
+gdb: all
 	$(QEMU) -s -S -kernel $(TARGETDIR)/rickos.bin
