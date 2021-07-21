@@ -1,0 +1,16 @@
+main.o:
+			$(CC) $(CFLAGS) -c main.c -o main.o
+boot.o:
+	$(ASMCC) $(ASMFLAGS) boot.s -o boot.o
+helpers.o:
+	$(ASMCC) $(ASMFLAGS) helpers.s -o helpers.o
+interrupt.o:
+	$(ASMCC) $(ASMFLAGS) interrupt.s -o interrupt.o
+page.o:
+	$(CC) $(CFLAGS) -c page.c -o page.o
+stdlib.o:
+	$(CC) $(CFLAGS) -c stdlib.c -o stdlib.o
+monitor.o:
+	$(CC) $(CFLAGS) -c monitor.c -o monitor.o
+idt.o:
+		$(CC) $(CFLAGS) -c idt.c -o idt.o

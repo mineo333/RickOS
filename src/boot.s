@@ -41,6 +41,14 @@ gdt_bottom: resb 128
 global gdt_top
 gdt_top: resb 16 ; padding to 16 bytes
 
+
+global idt_bottom
+idt_bottom: resb 128
+
+global idt_top
+idt_top: resb 16 ; padding to 16 bytes
+
+
 section .pgtable
 align 4096
 

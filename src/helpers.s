@@ -18,7 +18,7 @@ load_cr3:
 mov eax, [esp+4] ; this is the cr3 descriptor;
 mov cr3, eax
 mov ecx, cr0
-or ecx, 0x80000000 ; also enables WP
+or ecx, 0x80010000 ; also enables WP
 mov cr0, ecx
 ret
 

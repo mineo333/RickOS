@@ -4,6 +4,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
+//this is the old tty code
+
 enum vga_color {
 	VGA_COLOR_BLACK = 0,
 	VGA_COLOR_BLUE = 1,
