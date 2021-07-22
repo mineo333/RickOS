@@ -14,7 +14,7 @@ ASMFLAGS= -felf32
 
 
 rickos.bin: $(objects)
-	$(CC) -T linker.ld -o $(TARGETDIR)/$@ -ffreestanding -O2 -nostdlib $(patsubst %.o, $(BINDIR)/%.o, $^) -lgcc
+	$(CC) -T linker.ld -o $(TARGETDIR)/$@ -ffreestanding -O2 -nostdlib $(patsubst %.o, $(BINDIR)/%.o, $^)
 
 %.o: $(SRCDIR)/%.c #C recipe
 	$(CC) $(CFLAGS) -o $(BINDIR)/$@ -c $<
