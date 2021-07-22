@@ -28,10 +28,10 @@ void kernel_init()
 	paging_init();
 	setup_idt();
 	asm volatile ("sidt %0" : "=m"(idt));
-	monitor_write_dec(idt.base);
+/*	monitor_write_dec(idt.base);
 	monitor_put('\n');
 	monitor_write_dec(idt.limit);
-	monitor_put('\n');
-//	asm volatile ("int $0x3");
+	monitor_put('\n');*/
+	asm volatile ("int $0x3");
 
 }
