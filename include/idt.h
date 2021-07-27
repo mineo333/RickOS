@@ -43,17 +43,17 @@ struct idt_entry
 } __attribute__((packed));
 
 struct idt {
-    uint32_t base;
     uint16_t limit;
+    uint32_t base;
 }__attribute__((packed));
 
 
 extern struct idt_entry idt_bottom;
-extern void load_idt(char* idt);
+extern void load_idt(struct idt* idt);
 
 
 
-struct registers_t
+struct registers_t //for information on this register struct refernece the stack information in isr_commons_stub as well as the stack information in interrupt.s
 {
    uint32_t ds;                  // Data segment selector
    uint32_t edi, esi, ebp, esp, ebx, edx, ecx, eax; // Pushed by pusha.

@@ -5,7 +5,7 @@
 #include "stdlib.h"
 
 
-uint16_t *video_memory = (uint16_t *)0xB8000;
+volatile uint16_t *video_memory = (volatile uint16_t *)0xB8000;
 // Stores the cursor position.
 uint8_t cursor_x = 0;
 uint8_t cursor_y = 0;

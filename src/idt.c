@@ -18,8 +18,8 @@ void setup_idt(){
   struct idt_entry* idt_bot = &idt_bottom;
   uint16_t limit = (sizeof(struct idt_entry)*32)-1;
   uint32_t base = (uint32_t)&idt_bottom;
-  //struct idt idt;
-  char idt[6];
+  struct idt idt;
+
 
 
 
@@ -58,12 +58,8 @@ void setup_idt(){
   idt_gate((uint32_t)isr31, 0x8E,idt_bot+31);
 
 
-  idt[0] = limit & 0xFF; //this is done to fix for endianess
-  idt[1] = (limit & 0xFF00) >> 8;
-  idt[2] = (base & 0xFF);
-  idt[3] = (base & 0xFF00) >> 8;
-  idt[4] = (base & 0xFF0000) >> 16;
-  idt[5] = (base & 0xFF000000) >> 24;
+  idt.limit = limit;
+  idt.base = base;
   //idt.base = base;
   //idt.limit = limit;
   load_idt(&idt);

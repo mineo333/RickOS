@@ -28,7 +28,7 @@ void setup_gdt(struct gdt_ptr_struct* gdt_ptr){
 
 
 	gdt_gate(0, 0, 0, 0, gdt); //null gdt gate
-	gdt_gate(0, 0xFFFFF, 0x9A, 0x0D, gdt+1); //kernel code segment. This is in page granularity
+	gdt_gate(0, 0xFFFFF, 0x9A, 0x0D, gdt+1); //kernel code segment. This is in page granularity 
 	gdt_gate(0, 0xFFFFF, 0x92, 0x0D, gdt+2); //kernel data segment
 	gdt_gate(0, 0xFFFFF, 0xFA, 0x0D, gdt+3); //user code segment
 	gdt_gate(0, 0xFFFFF, 0xF2, 0x0D, gdt+4); //user data segment

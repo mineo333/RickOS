@@ -31,13 +31,12 @@ void map_page(phys_addr_t paddr, virt_addr_t vaddr,  uint8_t rw, pd_t* pd_t_star
 
 
 void paging_init(){ //identity maps 1st GiB
-  uint32_t addr_lim = 0x40000000; //1 GiB. Increment by 0x1000 which is 4096 bytes.
+  uint32_t addr_lim = 0x4000000;//0xFFFFFFFF; //1 GiB. Increment by 0x1000 which is 4096 bytes.
   //uint32_t addr_count = 0x0;
   instantiate_pd_t(&pg_dir_start, &pg_table_start, 1024); //create 1GiB of pd_t
               //increment pd until we hit 256 as we need 256 pd_t to represent 1 GiB
-  for(uint32_t addr_count = 0x0 ; addr_count < addr_lim; addr_count += 0x1000){ //1024 ptes per pd_t. Identity map first 1MiB
-    map_page(addr_count, addr_count, 1, &pg_dir_start);
-
+  for(uint32_t addr_count = 0 ; addr_count <= addr_lim; addr_count += 0x1000){ //1024 ptes per pd_t. Identity map first 1MiB
+    map_page(addr_count, addr_count, 1, &pg_dir_start); //identity map
   }
 
 //  print_number(&pg_dir_start);
