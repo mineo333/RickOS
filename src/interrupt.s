@@ -41,20 +41,22 @@ isr_common_stub:
 
    mov eax, ds               ; Lower 16-bits of eax = ds.
    push eax                 ; save the data segment descriptor
-
+   push esp
    mov eax, 0x10  ; load the kernel data segment descriptor. Everything needs to be eax or that causes problems because it preserves the upper 16 bits of eax which is no bueno
    mov ds, eax
    mov es, eax
    mov fs, eax
    mov gs, eax
 
-   call isr_handler
 
-   pop ebx        ; reload the original data segment descriptor
-   mov ds, ebx
-   mov es, ebx
-   mov fs, ebx
-   mov gs, ebx
+   call isr_handler
+   add esp, 4
+   pop eax
+   ;mov eax, 0x10        ; reload the original data segment descriptor. This causes a jump to isr13. Idk why
+   mov ds, eax
+   mov es, eax
+   mov fs, eax
+   mov gs, eax
 
    popad                    ; Pops edi,esi,ebp...
    add esp, 8     ; Cleans up the pushed error code and pushed ISR number
@@ -68,7 +70,7 @@ isr_common_stub:
    ISR_NOERRCODE 5
    ISR_NOERRCODE 6
    ISR_NOERRCODE 7
-   ISR_ERRCODE    8
+   ISR_NOERRCODE 8 ; 8 has no error code. that was a fucking lie. 
    ISR_NOERRCODE 9
    ISR_ERRCODE    10
    ISR_ERRCODE    11
@@ -81,7 +83,7 @@ isr_common_stub:
    ISR_NOERRCODE 18
    ISR_NOERRCODE 19
    ISR_NOERRCODE 20
-   ISR_NOERRCODE 21
+   ISR_ERRCODE 21
    ISR_NOERRCODE 22
    ISR_NOERRCODE 23
    ISR_NOERRCODE 24

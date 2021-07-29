@@ -65,4 +65,4 @@ void idt_gate(uint32_t base, uint8_t flags, struct idt_entry* idt_entry);
 
 void setup_idt();
 
-void isr_handler(struct registers_t regs);
+void isr_handler(struct registers_t* regs);

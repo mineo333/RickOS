@@ -66,9 +66,9 @@ void setup_idt(){
 
 }
 
-void isr_handler(struct registers_t regs){
+void isr_handler(struct registers_t* regs){
 	monitor_write("recieved interrupt: ");
-	monitor_write_dec(regs.int_no);
-	monitor_put('\n');
+  monitor_write_dec(regs->int_no);
+  monitor_put('\n');
 
 }
