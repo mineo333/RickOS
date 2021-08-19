@@ -4,6 +4,8 @@
 #include "monitor.h"
 #include "stdlib.h"
 
+//this entire file was copied from the James Molley tutorial. 
+
 
 volatile uint16_t *video_memory = (volatile uint16_t *)0xB8000;
 // Stores the cursor position.

@@ -10,12 +10,23 @@ void outb(uint16_t port, uint8_t value)
     asm volatile ("outb %1, %0" : : "dN" (port), "a" (value));
 }
 
-uint16_t inb(uint16_t port)
+void outw(uint16_t port, uint16_t value){
+  asm volatile ("outw %1, %0" : : "dN" (port), "a" (value));
+}
+
+uint8_t inb(uint16_t port)
 {
    uint8_t ret;
    asm volatile("inb %1, %0" : "=a" (ret) : "dN" (port));
    return ret;
 }
+//this function is useful so that
+void io_wait()
+{
+    /* TODO: This is probably fragile. */
+    asm volatile ( "outb %%al, $0x80" : : "a"(0) ); //By sending an instruction to Port-Mapped Mem we can guarantee that our prev request went through.
+}
+
 
 uint16_t inw(uint16_t port)
 {

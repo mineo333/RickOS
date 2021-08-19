@@ -35,6 +35,12 @@ ret
 
 global call_cpuid
 call_cpuid:
-mov eax, 1
-cpuid
+push ebx ;ebx is callee saved according to the SysV calling ABI. CPUID modifies ebx.
+mov esi, [esp+8] ; contrary to EBX, ESI is caller-saved and thus does not need to be saved on the stack. 
+mov eax, 1 ;this will make cpuid execute the way we want to
+cpuid ;the values of cpuid will be placed in ecx and edx
+
+mov [esi], ecx
+mov [esi+4], edx
+pop ebx
 ret
