@@ -48,7 +48,7 @@ struct idt {
 }__attribute__((packed));
 
 
-extern struct idt_entry idt_bottom;
+extern struct idt_entry idt_bottom[32];
 extern void load_idt(struct idt* idt);
 
 

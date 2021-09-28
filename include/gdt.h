@@ -1,5 +1,5 @@
-extern struct gdtdesc gdt_bottom;
-extern struct gdtdesc gdt_top;
+
+
 
 struct gdtdesc {
     uint16_t lim0_15;
@@ -10,8 +10,8 @@ struct gdtdesc {
     uint8_t other:4;
     uint8_t base24_31;
 } __attribute__ ((packed));
-
-
+extern struct gdtdesc gdt_bottom[5];
+extern struct gdtdesc gdt_top;
 struct gdt_ptr_struct
 {
    uint16_t limit;               // The upper 16 bits of all selector limits.

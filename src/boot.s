@@ -79,11 +79,10 @@ _start:
 
 	extern kernel_init
 	call kernel_init	; this would be a great time to set up the gdt
-.jmppoint:
-	int 0x3
+	;int 0x07
 
 
-;	cli ;hang
-;.hang:	hlt
-	jmp _start.jmppoint
+
+.hang:
+	jmp .hang
 .end:

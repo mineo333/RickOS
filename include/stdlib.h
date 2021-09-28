@@ -8,9 +8,7 @@ extern char* heap_brk; //eventually going to need to throw this into some kind o
 
 void outb(uint16_t port, uint8_t value);
 
-void outw(uint16_t port, uint16_t value);
-
-uint8_t inb(uint16_t port);
+uint16_t inb(uint16_t port);
 
 uint16_t inw(uint16_t port);
 
@@ -23,5 +21,3 @@ char* itoa(uint32_t num, char* str, uint32_t base);
 void* malloc(uint32_t buf_size);
 
 void free(void* ptr);
-
-void io_wait();

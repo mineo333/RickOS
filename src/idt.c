@@ -15,9 +15,9 @@ void idt_gate(uint32_t base, uint8_t flags, struct idt_entry* idt_entry){
 
 
 void setup_idt(){
-  struct idt_entry* idt_bot = &idt_bottom;
+  struct idt_entry* idt_bot = idt_bottom;
   uint16_t limit = (sizeof(struct idt_entry)*32)-1;
-  uint32_t base = (uint32_t)&idt_bottom;
+  uint32_t base = (uint32_t)idt_bottom;
   struct idt idt;
 
 
@@ -68,7 +68,7 @@ void setup_idt(){
 
 void isr_handler(struct registers_t* regs){
 	monitor_write("recieved interrupt: ");
-  monitor_write_dec(regs->int_no);
-  monitor_put('\n');
+	monitor_write_dec(regs->int_no);
+	monitor_put('\n');
 
 }

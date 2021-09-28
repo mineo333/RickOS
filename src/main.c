@@ -38,7 +38,7 @@ void kernel_init()
 	monitor_put('\n');
 	monitor_write_dec(idt.limit);
 	monitor_put('\n');*/
-	
+
 	//test_int2();
 
 

@@ -21,17 +21,17 @@ void setup_gdt(struct gdt_ptr_struct* gdt_ptr){
 
 
 
-	struct gdtdesc* gdt = &gdt_bottom; //each gdtdesc is 8 bytes
+	struct gdtdesc* gdt = gdt_bottom; //each gdtdesc is 8 bytes
 	gdt_ptr->limit = (sizeof(struct gdtdesc)*5)-1;
-	gdt_ptr-> base = (uint32_t)&gdt_bottom;
+	gdt_ptr-> base = (uint32_t)gdt_bottom;
 
 
 
 	gdt_gate(0, 0, 0, 0, gdt); //null gdt gate
-	gdt_gate(0, 0xFFFFF, 0x9A, 0x0C, gdt+1); //kernel code segment. This is in page granularity
-	gdt_gate(0, 0xFFFFF, 0x92, 0x0C, gdt+2); //kernel data segment
-	gdt_gate(0, 0xFFFFF, 0xFA, 0x0C, gdt+3); //user code segment
-	gdt_gate(0, 0xFFFFF, 0xF2, 0x0C, gdt+4); //user data segment
+	gdt_gate(0, 0xFFFFF, 0x9A, 0x0D, gdt+1); //kernel code segment. This is in page granularity
+	gdt_gate(0, 0xFFFFF, 0x92, 0x0D, gdt+2); //kernel data segment
+	gdt_gate(0, 0xFFFFF, 0xFA, 0x0D, gdt+3); //user code segment
+	gdt_gate(0, 0xFFFFF, 0xF2, 0x0D, gdt+4); //user data segment
 
 
 }

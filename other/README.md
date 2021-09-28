@@ -1,1 +1,2 @@
-This folder is mainly for playing around with C so I can maybe incorporate it later into the OS
+This code is not for the OS
+I use this for fuck around with C and test some pointer and memroy shit
