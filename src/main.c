@@ -35,7 +35,7 @@ void kernel_init()
 
 	setup_idt();
 
-	ISR(0)
+	ISR(0) //THIS IS SOME UGLY CODE. idk how do properly do macro expansion but i'll try to learn
 	ISR(1)
 	ISR(2)
 	ISR(3)
