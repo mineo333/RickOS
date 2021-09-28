@@ -79,7 +79,6 @@ _start:
 
 	extern kernel_init
 	call kernel_init	; this would be a great time to set up the gdt
-	;int 0x07
 
 
 
